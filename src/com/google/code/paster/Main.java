@@ -2,6 +2,7 @@ package com.google.code.paster;
 
 import com.google.code.paster.util.KbdataConnector;
 import com.google.code.paster.entity.KbItem;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -36,11 +37,16 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // change default icon
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Image frameIcon = kit.getImage("res/icon-48.png");
+        this.setIconImage(frameIcon);
+
         initComponents();
         updateModel();
         clearEditor();
     }
-    
+
     /**
      * Read the latest items from the Model
      */
@@ -107,7 +113,7 @@ public class Main extends javax.swing.JFrame {
         clipboard.setContents(stringData, stringData);
         infoLabel.setText("Text copied to clipboard :)");
     }
-    
+
     /**
      * Unlock the fields to enable content editting
      */
