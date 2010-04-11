@@ -155,6 +155,7 @@ public class Main extends javax.swing.JFrame {
         titleField = new javax.swing.JTextField();
         submitButton = new javax.swing.JButton();
         infoLabel = new javax.swing.JLabel();
+        copyLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Paster");
@@ -211,6 +212,11 @@ public class Main extends javax.swing.JFrame {
         infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         infoLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        copyLabel.setForeground(new java.awt.Color(180, 180, 180));
+        copyLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        copyLabel.setText("Paster 1.0 - © Bram Borggreve");
+        copyLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,12 +233,13 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(deleteButton))
                     .addComponent(scrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(titleField, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
+                    .addComponent(scrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                    .addComponent(copyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -250,7 +257,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(scrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                     .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(infoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(copyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -264,13 +273,11 @@ public class Main extends javax.swing.JFrame {
         int id = 0;
 
         if (action.equals("Save")) {
-            System.out.println("Adding new item!");
             kc.insertItem(title, text);
         } else {
             id = kbList.getSelectedIndex();
             thisItem = (KbItem) model.getElementAt(id);
             int editId = thisItem.getId();
-            System.out.println("Updating item " + editId);
             kc.updateItem(editId, title, text);
         }
 
@@ -347,6 +354,7 @@ public class Main extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JLabel copyLabel;
     public javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel infoLabel;
