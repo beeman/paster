@@ -50,15 +50,11 @@ public class KbdataConnector {
         KbItem thisItem = null;
         for (int i = 0; i < kbItemMap.size(); i++) {
             thisItem = kbItemMap.get(i);
-            int id = thisItem.getId();
-            String title = thisItem.getTitle();
-            
-            System.out.println("Entry " + i + " id " + id + " " + title);
             dlm.add(i, kbItemMap.get(i));
         }
-
         return dlm;
     }
+
     /**
      * Retrieve the Items from the database
      * @return Hasmap with the items
@@ -66,15 +62,10 @@ public class KbdataConnector {
      */
     public static HashMap<Integer, KbItem> getData() throws Exception {
         Statement stat = kbConnection.createStatement();
-
         String query = "SELECT id, title, text FROM kbitems";
-        System.out.println(query);
-        
         ResultSet rs = stat.executeQuery(query);
-
         HashMap<Integer, KbItem> newKbMap = new HashMap<Integer, KbItem>();
         KbItem newKb = null;
-
         int i = 0;
         while (rs.next()) {
             int id = Integer.parseInt(rs.getString("id"));
@@ -125,20 +116,16 @@ public class KbdataConnector {
     public void insertItem(String title, String text) {
         try {
             kbConnection = makeConnection();
-
             Statement stat = kbConnection.createStatement();
             text = text.replaceAll("'", "");
-            
             String query = "INSERT INTO kbitems (title, text) VALUES ('" + title + "','" + text + "');";
-            System.out.println(query);
-            
             stat.executeUpdate(query);
-
             kbConnection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     /**
      * Update an existing KbItem
      *
@@ -149,18 +136,15 @@ public class KbdataConnector {
     public void updateItem(int id, String title, String text) {
         try {
             kbConnection = makeConnection();
-
             Statement stat = kbConnection.createStatement();
-
             String query = "UPDATE kbitems SET title = '" + title + "' , text = '" + text + "'" + " WHERE id = " + id;
-            System.out.println("Executing: " + query);
             stat.executeUpdate(query);
-
             kbConnection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     /**
      * Delete an existing KbItem
      *
@@ -169,17 +153,12 @@ public class KbdataConnector {
     public void deleteItem(KbItem delItem) {
         try {
             kbConnection = makeConnection();
-
             Statement stat = kbConnection.createStatement();
-
             String query = "DELETE FROM kbitems WHERE id = " + delItem.getId();
-            System.out.println("Executing: " + query);
             stat.executeUpdate(query);
-
             kbConnection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 }
