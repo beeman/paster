@@ -62,7 +62,7 @@ public class KbdataConnector {
      */
     public static HashMap<Integer, KbItem> getData() throws Exception {
         Statement stat = kbConnection.createStatement();
-        String query = "SELECT id, title, text FROM kbitems";
+        String query = "SELECT id, title, text FROM kbitems ORDER BY title";
         ResultSet rs = stat.executeQuery(query);
         HashMap<Integer, KbItem> newKbMap = new HashMap<Integer, KbItem>();
         KbItem newKb = null;
